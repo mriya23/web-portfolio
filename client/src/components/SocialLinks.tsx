@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
-import { SiGithub, SiLinkedin, SiInstagram, SiTwitter } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiInstagram, SiX } from "react-icons/si";
 
 const socialProfiles = [
   {
@@ -35,7 +35,7 @@ const socialProfiles = [
     name: "Twitter",
     username: "@dev_tweets",
     description: "Tech thoughts, industry news, and developer community engagement",
-    icon: SiTwitter,
+    icon: SiX,
     stats: "2K+ Followers",
     url: "https://twitter.com",
     color: "hover:border-[#1DA1F2]",

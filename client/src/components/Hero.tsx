@@ -1,29 +1,41 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Sparkles, ArrowRight } from "lucide-react";
 
-const heroImage = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop";
+const heroImage = "/images/profile.png";
 
 const skills = ["Flutter", "React", "Astro", "Node.js", "Python"];
 
+const roles = ["Full-Stack Developer", "Mobile Developer", "UI/UX Enthusiast"];
+
 export function Hero() {
   const [displayText, setDisplayText] = useState("");
-  const fullText = "Hi, I'm ";
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
+  // Typing effect for roles
   useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= fullText.length) {
-        setDisplayText(fullText.slice(0, index));
-        index++;
+    const currentRole = roles[roleIndex];
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (displayText.length < currentRole.length) {
+          setDisplayText(currentRole.slice(0, displayText.length + 1));
+        } else {
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
       } else {
-        clearInterval(timer);
+        if (displayText.length > 0) {
+          setDisplayText(displayText.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+        }
       }
-    }, 100);
+    }, isDeleting ? 50 : 100);
 
-    return () => clearInterval(timer);
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, roleIndex]);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -42,83 +54,169 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-6 md:px-12 pt-20"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 pt-24 pb-12 relative overflow-hidden"
     >
-      <div className="max-w-7xl w-full">
+      {/* Mesh Gradient Background */}
+      <div className="absolute inset-0 mesh-gradient opacity-50" />
+      
+      {/* Animated Orbs */}
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/30 rounded-full blur-[100px] animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+      
+      <div className="max-w-7xl w-full relative z-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-          <div className="order-2 md:order-1 space-y-6">
+          <motion.div 
+            className="order-2 md:order-1 space-y-8"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            {/* Status Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Available for work
+              </span>
+            </motion.div>
+
             <div className="space-y-4">
-              <p className="text-lg md:text-xl text-muted-foreground font-medium">
-                {displayText}
-                <span className="animate-pulse">|</span>
-              </p>
-              <h1 className="font-heading font-bold text-5xl md:text-7xl leading-tight">
-                Creative
-                <br />
-                <span className="text-primary">Developer</span>
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
-                Crafting beautiful digital experiences with modern web
-                technologies. Passionate about design, code, and creating
-                solutions that make a difference.
-              </p>
+              <motion.h1 
+                className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                Hi, I'm{" "}
+                <span className="animated-gradient-text">Mriya</span>
+              </motion.h1>
+              
+              <motion.div 
+                className="h-12 md:h-14"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium">
+                  {displayText}
+                  <span className="animate-pulse text-primary">|</span>
+                </p>
+              </motion.div>
+
+              <motion.p 
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                Crafting beautiful digital experiences with modern technologies. 
+                From mobile apps to web platforms, I bring ideas to life with 
+                clean code and stunning design.
+              </motion.p>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <Badge
+            {/* Skills Tags */}
+            <motion.div 
+              className="flex flex-wrap gap-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              {skills.map((skill, index) => (
+                <motion.div
                   key={skill}
-                  variant="secondary"
-                  className="text-sm font-medium px-3 py-1"
-                  data-testid={`badge-skill-${skill.toLowerCase()}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.7 + index * 0.1 }}
                 >
-                  {skill}
-                </Badge>
+                  <Badge
+                    variant="secondary"
+                    className="text-sm font-medium px-4 py-2 bg-secondary/50 backdrop-blur-sm border border-border/50 hover:bg-primary/20 hover:border-primary/30 transition-all duration-300 cursor-default"
+                    data-testid={`badge-skill-${skill.toLowerCase()}`}
+                  >
+                    {skill}
+                  </Badge>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Button
-                size="lg"
+            {/* CTA Buttons */}
+            <motion.div 
+              className="flex flex-wrap gap-4 pt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+            >
+              <button
                 onClick={() => scrollToSection("#projects")}
+                className="btn-modern group"
                 data-testid="button-view-projects"
               >
-                View Projects
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
+                <span className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  View Projects
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </button>
+              <button
                 onClick={() => scrollToSection("#contact")}
+                className="px-6 py-3 rounded-xl font-medium border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
                 data-testid="button-get-in-touch"
               >
                 Get in Touch
-              </Button>
-            </div>
-          </div>
+              </button>
+            </motion.div>
+          </motion.div>
 
-          <div className="order-1 md:order-2 relative">
+          {/* Hero Image */}
+          <motion.div 
+            className="order-1 md:order-2 relative max-w-[280px] sm:max-w-[320px] md:max-w-none mx-auto"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-2xl blur-3xl" />
-              <img
-                src={heroImage}
-                alt="Professional portrait"
-                className="relative rounded-2xl w-full object-cover shadow-2xl aspect-[3/4]"
-                data-testid="img-hero"
-              />
+              {/* Glow Effect */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary/40 via-purple-500/40 to-pink-500/40 rounded-3xl blur-2xl opacity-50 animate-pulse" />
+              
+              {/* Image Container */}
+              <div className="relative rounded-3xl overflow-hidden border-2 border-white/10">
+                <img
+                  src={heroImage}
+                  alt="Professional portrait"
+                  className="w-full object-cover aspect-[3/4]"
+                  data-testid="img-hero"
+                />
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+              </div>
+
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="flex justify-center mt-16 md:mt-24 animate-bounce">
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="flex justify-center mt-16 md:mt-24"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+        >
           <button
             onClick={() => scrollToSection("#about")}
-            className="hover-elevate active-elevate-2 p-2 rounded-full"
+            className="p-3 rounded-full border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 animate-bounce"
             data-testid="button-scroll-down"
             aria-label="Scroll to about section"
           >
-            <ChevronDown className="w-8 h-8 text-muted-foreground" />
+            <ChevronDown className="w-6 h-6 text-muted-foreground" />
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

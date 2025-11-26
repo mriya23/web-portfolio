@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Smartphone, Globe, Palette, Cpu } from "lucide-react";
 
 const projects = [
   {
@@ -11,8 +10,11 @@ const projects = [
     image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop",
     tags: ["Flutter", "Dart", "REST API", "Firebase"],
     category: "mobile",
+    icon: Smartphone,
+    color: "from-blue-500 to-cyan-500",
     liveUrl: "#",
     githubUrl: "#",
+    featured: true,
   },
   {
     title: "Trading Bot Platform",
@@ -20,8 +22,11 @@ const projects = [
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop",
     tags: ["React", "Node.js", "Python", "WebSocket"],
     category: "web",
+    icon: Globe,
+    color: "from-purple-500 to-pink-500",
     liveUrl: "#",
     githubUrl: "#",
+    featured: true,
   },
   {
     title: "Indonesia Travel Website",
@@ -29,30 +34,57 @@ const projects = [
     image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=600&fit=crop",
     tags: ["React", "Node.js", "PostgreSQL", "Tailwind"],
     category: "web",
+    icon: Globe,
+    color: "from-emerald-500 to-teal-500",
     liveUrl: "#",
     githubUrl: "#",
+    featured: false,
   },
   {
     title: "Moro Audio",
     description: "Landing page profesional untuk usaha sewa tenda hajatan dan sound system. Menampilkan katalog produk, paket layanan, dan form pemesanan untuk berbagai acara.",
-    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop",
+    image: "/images/moroaudio.png",
     tags: ["Astro", "Tailwind", "JavaScript"],
     category: "web",
+    icon: Globe,
+    color: "from-orange-500 to-red-500",
     liveUrl: "#",
     githubUrl: "#",
+    featured: false,
   },
   {
     title: "Coffee Shop Landing Page",
     description: "Landing page modern untuk coffee shop dengan desain elegan. Menampilkan menu, lokasi, dan ambiance kafe yang mengundang pengunjung untuk datang.",
-    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop",
+    image: "/images/Kapur.png",
     tags: ["React", "Tailwind", "Framer Motion"],
     category: "design",
+    icon: Palette,
+    color: "from-amber-500 to-yellow-500",
     liveUrl: "#",
     githubUrl: "#",
+    featured: false,
+  },
+  {
+    title: "IoT Monitoring Susu Kambing",
+    description: "Sistem monitoring kelayakan air susu kambing berbasis IoT. Menggunakan sensor untuk mengukur kualitas susu secara real-time dengan dashboard monitoring dan notifikasi otomatis.",
+    image: "/images/iot.png",
+    tags: ["IoT", "Arduino", "Python", "MQTT"],
+    category: "iot",
+    icon: Cpu,
+    color: "from-cyan-500 to-blue-500",
+    liveUrl: "#",
+    githubUrl: "#",
+    featured: false,
   },
 ];
 
-const categories = ["All", "Web", "Mobile", "Design"];
+const categories = [
+  { name: "All", icon: null },
+  { name: "Web", icon: Globe },
+  { name: "Mobile", icon: Smartphone },
+  { name: "IoT", icon: Cpu },
+  { name: "Design", icon: Palette },
+];
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -64,91 +96,144 @@ export function Projects() {
   );
 
   return (
-    <section id="projects" className="py-20 md:py-32 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-heading font-semibold text-3xl md:text-4xl mb-4">
-            Featured Projects
+    <section id="projects" className="py-16 sm:py-20 md:py-32 px-4 sm:px-6 md:px-12 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[150px]" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
+        <motion.div 
+          className="text-center mb-10 sm:mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+            Portfolio
+          </span>
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+            Featured <span className="animated-gradient-text">Projects</span>
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            A showcase of my recent work and creative endeavors across web,
-            mobile, and design projects
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            A showcase of my recent work across mobile apps, web platforms, and creative designs
           </p>
-        </div>
+        </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={activeCategory === category ? "default" : "outline"}
-              onClick={() => setActiveCategory(category)}
-              data-testid={`button-filter-${category.toLowerCase()}`}
-              className="font-medium"
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
+        {/* Filter Tabs */}
+        <motion.div 
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {categories.map((category) => {
+            const Icon = category.icon;
+            return (
+              <button
+                key={category.name}
+                onClick={() => setActiveCategory(category.name)}
+                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-sm sm:text-base font-medium transition-all duration-300 ${
+                  activeCategory === category.name
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                    : "bg-secondary/50 hover:bg-secondary text-foreground border border-border/50"
+                }`}
+                data-testid={`button-filter-${category.name.toLowerCase()}`}
+              >
+                {Icon && <Icon className="w-4 h-4" />}
+                {category.name}
+              </button>
+            );
+          })}
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {filteredProjects.map((project, index) => (
-            <Card
-              key={index}
-              className="overflow-hidden group hover-elevate transition-all duration-300"
-              data-testid={`card-project-${index}`}
-            >
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  data-testid={`img-project-${index}`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-                  <Button
-                    size="icon"
-                    variant="secondary"
-                    className="bg-background/90 backdrop-blur-sm"
-                    data-testid={`button-project-live-${index}`}
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    size="icon"
-                    variant="secondary"
-                    className="bg-background/90 backdrop-blur-sm"
-                    data-testid={`button-project-github-${index}`}
-                  >
-                    <Github className="w-4 h-4" />
-                  </Button>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {filteredProjects.map((project, index) => {
+            const Icon = project.icon;
+            const isFeatured = project.featured && index < 2;
+            
+            return (
+              <motion.div
+                key={project.title}
+                className={`group relative ${isFeatured ? "md:col-span-1 lg:row-span-1" : ""}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                data-testid={`card-project-${index}`}
+              >
+                <div className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-border/50 card-hover">
+                  {/* Image */}
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      data-testid={`img-project-${index}`}
+                    />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r ${project.color} text-white`}>
+                        <Icon className="w-3 h-3" />
+                        {project.category}
+                      </span>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                      <button
+                        className="p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                        data-testid={`button-project-live-${index}`}
+                      >
+                        <ExternalLink className="w-4 h-4 text-white" />
+                      </button>
+                      <button
+                        className="p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
+                        data-testid={`button-project-github-${index}`}
+                      >
+                        <Github className="w-4 h-4 text-white" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+                    <div className="space-y-2">
+                      <h3 className="font-heading font-bold text-lg sm:text-xl group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                        {project.description}
+                      </p>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="text-xs px-2.5 py-1 bg-secondary/50 border border-border/50"
+                          data-testid={`badge-tag-${tag.toLowerCase()}`}
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Hover Glow Effect */}
+                  <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br ${project.color} blur-xl -z-10`} style={{ transform: 'scale(0.9)' }} />
                 </div>
-              </div>
-
-              <div className="p-6 space-y-4">
-                <div className="space-y-2">
-                  <h3 className="font-heading font-semibold text-xl">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="secondary"
-                      className="text-xs"
-                      data-testid={`badge-tag-${tag.toLowerCase()}`}
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

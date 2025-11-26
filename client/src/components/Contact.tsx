@@ -20,19 +20,19 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@example.com",
+    value: "riskijayakarta2310@gmail.com",
     href: "mailto:hello@example.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+1 (555) 123-4567",
+    value: "+62 858 1005 8429",
     href: "tel:+15551234567",
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "San Francisco, CA",
+    value: "Banyumas Purwokerto City",
     href: "#",
   },
 ];
@@ -71,10 +71,10 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 px-6 md:px-12 bg-muted/30">
+    <section id="contact" className="py-16 sm:py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-muted/30">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-heading font-semibold text-3xl md:text-4xl mb-4">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="font-heading font-semibold text-2xl sm:text-3xl md:text-4xl mb-4">
             Get In Touch
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -83,9 +83,9 @@ export function Contact() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           <div className="space-y-8">
-            <Card className="p-6">
+            <Card className="p-4 sm:p-6">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
@@ -159,7 +159,7 @@ export function Contact() {
 
           <div className="space-y-8">
             <div className="space-y-4">
-              <h3 className="font-heading font-semibold text-2xl mb-6">
+              <h3 className="font-heading font-semibold text-xl sm:text-2xl mb-4 sm:mb-6">
                 Contact Information
               </h3>
               {contactInfo.map((info, index) => {
@@ -190,7 +190,7 @@ export function Contact() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-heading font-semibold text-2xl mb-6">
+              <h3 className="font-heading font-semibold text-xl sm:text-2xl mb-4 sm:mb-6">
                 Connect With Me
               </h3>
               <div className="flex gap-3">
