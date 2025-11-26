@@ -3,18 +3,12 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
-import analyticsImage from "@assets/generated_images/analytics_dashboard_project_mockup.png";
-import ecommerceImage from "@assets/generated_images/e-commerce_website_mockup.png";
-import mobileAppImage from "@assets/generated_images/mobile_app_ui_mockup.png";
-import portfolioImage from "@assets/generated_images/creative_portfolio_website_mockup.png";
-import taskManagementImage from "@assets/generated_images/task_management_app_mockup.png";
-import socialMediaImage from "@assets/generated_images/social_media_platform_mockup.png";
 
 const projects = [
   {
     title: "Analytics Dashboard",
     description: "A comprehensive analytics platform with real-time data visualization, custom reports, and team collaboration features.",
-    image: analyticsImage,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
     tags: ["React", "TypeScript", "Chart.js", "Node.js"],
     category: "web",
     liveUrl: "#",
@@ -23,7 +17,7 @@ const projects = [
   {
     title: "E-Commerce Platform",
     description: "Modern online shopping experience with product management, cart functionality, and secure payment integration.",
-    image: ecommerceImage,
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
     tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
     category: "web",
     liveUrl: "#",
@@ -32,7 +26,7 @@ const projects = [
   {
     title: "Mobile Chat App",
     description: "Real-time messaging application with end-to-end encryption, media sharing, and group chat capabilities.",
-    image: mobileAppImage,
+    image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&h=600&fit=crop",
     tags: ["React Native", "Firebase", "WebSocket"],
     category: "mobile",
     liveUrl: "#",
@@ -41,7 +35,7 @@ const projects = [
   {
     title: "Creative Portfolio",
     description: "Stunning portfolio website featuring interactive animations, case studies, and a unique design approach.",
-    image: portfolioImage,
+    image: "https://images.unsplash.com/photo-1545235617-9465d2a55698?w=800&h=600&fit=crop",
     tags: ["React", "Framer Motion", "GSAP"],
     category: "design",
     liveUrl: "#",
@@ -50,7 +44,7 @@ const projects = [
   {
     title: "Task Management Tool",
     description: "Collaborative project management platform with kanban boards, time tracking, and team productivity analytics.",
-    image: taskManagementImage,
+    image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&h=600&fit=crop",
     tags: ["React", "Redux", "Node.js", "MongoDB"],
     category: "web",
     liveUrl: "#",
@@ -59,7 +53,7 @@ const projects = [
   {
     title: "Social Media Platform",
     description: "Feature-rich social networking site with posts, stories, real-time notifications, and user engagement metrics.",
-    image: socialMediaImage,
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop",
     tags: ["Next.js", "GraphQL", "PostgreSQL"],
     category: "web",
     liveUrl: "#",

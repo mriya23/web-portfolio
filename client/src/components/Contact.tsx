@@ -6,9 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, MapPin, Phone, Github, Linkedin, Twitter } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertContactMessageSchema, type InsertContactMessage } from "@shared/schema";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+import { contactFormSchema, type ContactFormData } from "@/lib/schema";
 import {
   Form,
   FormControl,
@@ -48,8 +46,8 @@ const socialLinks = [
 export function Contact() {
   const { toast } = useToast();
 
-  const form = useForm<InsertContactMessage>({
-    resolver: zodResolver(insertContactMessageSchema),
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -57,29 +55,19 @@ export function Contact() {
     },
   });
 
-  const contactMutation = useMutation({
-    mutationFn: async (data: InsertContactMessage) => {
-      return apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
-      form.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api/contact"] });
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Failed to send message",
-        description: error.message || "Please try again later.",
-        variant: "destructive",
-      });
-    },
-  });
+  const onSubmit = (data: ContactFormData) => {
+    const whatsappNumber = "085810058429";
+    const message = `Nama: ${data.name}\nEmail: ${data.email}\nPesan: ${data.message}`;
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-  const onSubmit = (data: InsertContactMessage) => {
-    contactMutation.mutate(data);
+    window.open(url, "_blank");
+
+    toast({
+      title: "Opening WhatsApp",
+      description: "Your message has been prepared in WhatsApp.",
+    });
+
+    form.reset();
   };
 
   return (
@@ -159,10 +147,10 @@ export function Contact() {
                   <Button
                     type="submit"
                     className="w-full"
-                    disabled={contactMutation.isPending}
+                    disabled={form.formState.isSubmitting}
                     data-testid="button-submit-contact"
                   >
-                    {contactMutation.isPending ? "Sending..." : "Send Message"}
+                    {form.formState.isSubmitting ? "Opening WhatsApp..." : "Send via WhatsApp"}
                   </Button>
                 </form>
               </Form>

@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown } from "lucide-react";
-import heroImage from "@assets/generated_images/professional_hero_portrait_photo.png";
+
+const heroImage = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop";
 
 const skills = ["React", "TypeScript", "Node.js", "Design", "UI/UX"];
 

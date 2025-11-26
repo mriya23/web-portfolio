@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Calendar, GraduationCap, Briefcase } from "lucide-react";
-import aboutImage from "@assets/generated_images/casual_about_me_photo.png";
+
+const aboutImage = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop";
 
 const timeline = [
   {
