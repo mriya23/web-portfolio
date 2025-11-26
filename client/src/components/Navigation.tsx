@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -69,17 +70,20 @@ export function Navigation() {
                   {item.label}
                 </Button>
               ))}
+              <ThemeToggle />
             </div>
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              data-testid="button-menu-toggle"
-            >
-              {isMobileMenuOpen ? <X /> : <Menu />}
-            </Button>
+            <div className="flex items-center gap-2 md:hidden">
+              <ThemeToggle />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                data-testid="button-menu-toggle"
+              >
+                {isMobileMenuOpen ? <X /> : <Menu />}
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
