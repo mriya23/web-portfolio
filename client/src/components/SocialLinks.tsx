@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
-import { SiGithub, SiLinkedin, SiInstagram, SiX } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiInstagram } from "react-icons/si";
 
 const socialProfiles = [
   {
@@ -19,7 +19,7 @@ const socialProfiles = [
     description: "Professional network, career updates, and industry connections",
     icon: SiLinkedin,
     stats: "500+ Connections",
-    url: "https://linkedin.com",
+    url: "https://www.linkedin.com/in/mochamad-rizqy-jayakarta/",
     color: "hover:border-[#0077B5]",
   },
   {
@@ -30,15 +30,6 @@ const socialProfiles = [
     stats: "1K+ Followers",
     url: "https://instagram.com",
     color: "hover:border-[#E4405F]",
-  },
-  {
-    name: "Twitter",
-    username: "@dev_tweets",
-    description: "Tech thoughts, industry news, and developer community engagement",
-    icon: SiX,
-    stats: "2K+ Followers",
-    url: "https://twitter.com",
-    color: "hover:border-[#1DA1F2]",
   },
 ];
 

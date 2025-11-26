@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, MapPin, Phone, Github, Linkedin, Instagram } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema, type ContactFormData } from "@/lib/schema";
@@ -38,9 +38,9 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: Github, label: "GitHub", href: "https://github.com" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-  { icon: Twitter, label: "Twitter", href: "https://twitter.com" },
+  { icon: Github, label: "GitHub", href: "https://github.com/mriya23" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mochamad-rizqy-jayakarta/" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/mochrizqy.j" },
 ];
 
 export function Contact() {
@@ -189,35 +189,6 @@ export function Contact() {
               })}
             </div>
 
-            <div className="space-y-4">
-              <h3 className="font-heading font-semibold text-xl sm:text-2xl mb-4 sm:mb-6">
-                Connect With Me
-              </h3>
-              <div className="flex gap-3">
-                {socialLinks.map((social, index) => {
-                  const Icon = social.icon;
-                  return (
-                    <Button
-                      key={index}
-                      variant="outline"
-                      size="icon"
-                      asChild
-                      className="hover-elevate"
-                      data-testid={`button-social-${social.label.toLowerCase()}`}
-                    >
-                      <a
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                      >
-                        <Icon className="w-5 h-5" />
-                      </a>
-                    </Button>
-                  );
-                })}
-              </div>
-            </div>
           </div>
         </div>
       </div>

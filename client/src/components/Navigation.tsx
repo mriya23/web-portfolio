@@ -68,7 +68,7 @@ export function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className={`flex items-center justify-between rounded-2xl transition-all duration-500 ${
             isScrolled
-              ? "bg-background/70 backdrop-blur-xl border border-border/50 shadow-lg shadow-black/5 px-4 sm:px-6 py-2 sm:py-3"
+              ? "md:bg-background/70 md:backdrop-blur-xl md:border md:border-border/50 md:shadow-lg md:shadow-black/5 md:px-6 md:py-2 bg-transparent border-none shadow-none px-0 py-0"
               : "bg-transparent px-0 py-0"
           }`}>
             {/* Spacer - hidden on mobile */}
@@ -100,13 +100,13 @@ export function Navigation() {
             </div>
 
             {/* Right Side */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 ml-auto md:ml-0">
               <ThemeToggle />
               
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2.5 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
+                className="md:hidden p-2 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
                 data-testid="button-menu-toggle"
               >
                 {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -148,10 +148,10 @@ export function Navigation() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   onClick={() => scrollToSection(item.href)}
-                  className={`w-full max-w-xs text-center text-2xl font-heading font-semibold py-4 px-6 rounded-2xl transition-all duration-300 ${
+                  className={`w-full max-w-xs text-center text-lg font-heading font-medium py-3 px-6 rounded-xl transition-all duration-300 ${
                     activeSection === item.href.slice(1)
-                      ? "bg-primary text-primary-foreground"
-                      : "hover:bg-secondary/50"
+                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                      : "hover:bg-secondary/50 text-muted-foreground hover:text-foreground"
                   }`}
                   data-testid={`mobile-link-${item.label.toLowerCase()}`}
                 >

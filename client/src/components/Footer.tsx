@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const quickLinks = [
@@ -10,10 +10,10 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  { icon: Github, label: "GitHub", href: "https://github.com" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-  { icon: Twitter, label: "Twitter", href: "https://twitter.com" },
-  { icon: Mail, label: "Email", href: "mailto:hello@example.com" },
+  { icon: Github, label: "GitHub", href: "https://github.com/mriya23" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mochamad-rizqy-jayakarta/" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/mochrizqy.j" },
+  { icon: Mail, label: "Email", href: "mailto:riskijayakarta2310@gmail.com" },
 ];
 
 export function Footer() {
@@ -61,7 +61,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-heading font-semibold text-lg">Connect</h3>
+            <h3 className="font-heading font-semibold text-lg">Connect With Me</h3>
             <div className="flex gap-2">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
@@ -90,12 +90,9 @@ export function Footer() {
         </div>
 
         <div className="border-t pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Portfolio. All rights reserved.
-            </p>
-            <p className="text-sm text-muted-foreground flex items-center gap-1">
-              Made with <Heart className="w-4 h-4 text-destructive fill-destructive" /> using React & TypeScript
             </p>
           </div>
         </div>

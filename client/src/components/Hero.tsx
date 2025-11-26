@@ -71,20 +71,6 @@ export function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                Available for work
-              </span>
-            </motion.div>
 
             <div className="space-y-4">
               <motion.h1 
@@ -121,30 +107,6 @@ export function Hero() {
               </motion.p>
             </div>
 
-            {/* Skills Tags */}
-            <motion.div 
-              className="flex flex-wrap gap-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.7 + index * 0.1 }}
-                >
-                  <Badge
-                    variant="secondary"
-                    className="text-sm font-medium px-4 py-2 bg-secondary/50 backdrop-blur-sm border border-border/50 hover:bg-primary/20 hover:border-primary/30 transition-all duration-300 cursor-default"
-                    data-testid={`badge-skill-${skill.toLowerCase()}`}
-                  >
-                    {skill}
-                  </Badge>
-                </motion.div>
-              ))}
-            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div 

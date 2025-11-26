@@ -165,7 +165,7 @@ export function Projects() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 data-testid={`card-project-${index}`}
               >
-                <div className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-border/50 card-hover">
+                <div className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-border/50">
                   {/* Image */}
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
@@ -177,13 +177,6 @@ export function Projects() {
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                     
-                    {/* Category Badge */}
-                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r ${project.color} text-white`}>
-                        <Icon className="w-3 h-3" />
-                        {project.category}
-                      </span>
-                    </div>
 
                     {/* Action Buttons */}
                     <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
@@ -228,8 +221,6 @@ export function Projects() {
                     </div>
                   </div>
 
-                  {/* Hover Glow Effect */}
-                  <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br ${project.color} blur-xl -z-10`} style={{ transform: 'scale(0.9)' }} />
                 </div>
               </motion.div>
             );
