@@ -3,13 +3,23 @@ import { Code2, Palette, Smartphone, Server, Database, Layout } from "lucide-rea
 
 const skillCategories = [
   {
-    title: "Technical Skills",
+    title: "Frontend Development",
     icon: Code2,
     skills: [
-      { name: "React & Next.js", level: 90 },
+      { name: "React", level: 90 },
+      { name: "Astro", level: 85 },
       { name: "TypeScript", level: 85 },
-      { name: "JavaScript (ES6+)", level: 95 },
-      { name: "HTML & CSS", level: 95 },
+      { name: "Tailwind CSS", level: 95 },
+    ],
+  },
+  {
+    title: "Mobile Development",
+    icon: Smartphone,
+    skills: [
+      { name: "Flutter", level: 90 },
+      { name: "Dart", level: 85 },
+      { name: "Firebase", level: 80 },
+      { name: "REST API Integration", level: 90 },
     ],
   },
   {
@@ -17,49 +27,39 @@ const skillCategories = [
     icon: Server,
     skills: [
       { name: "Node.js & Express", level: 85 },
+      { name: "Python", level: 80 },
       { name: "REST APIs", level: 90 },
-      { name: "GraphQL", level: 75 },
-      { name: "Authentication", level: 80 },
+      { name: "WebSocket", level: 85 },
     ],
   },
   {
     title: "Database & Tools",
     icon: Database,
     skills: [
-      { name: "PostgreSQL", level: 80 },
-      { name: "MongoDB", level: 75 },
+      { name: "PostgreSQL", level: 85 },
+      { name: "Firebase", level: 80 },
       { name: "Git & GitHub", level: 90 },
       { name: "Docker", level: 70 },
     ],
   },
   {
-    title: "Design Tools",
+    title: "Design & UI/UX",
     icon: Palette,
     skills: [
       { name: "Figma", level: 85 },
-      { name: "Adobe XD", level: 75 },
-      { name: "Tailwind CSS", level: 95 },
       { name: "UI/UX Design", level: 80 },
-    ],
-  },
-  {
-    title: "Mobile Development",
-    icon: Smartphone,
-    skills: [
-      { name: "React Native", level: 75 },
       { name: "Responsive Design", level: 95 },
-      { name: "PWA Development", level: 80 },
-      { name: "Mobile-First", level: 90 },
+      { name: "Framer Motion", level: 75 },
     ],
   },
   {
-    title: "Frameworks & Libraries",
+    title: "Specialized Skills",
     icon: Layout,
     skills: [
-      { name: "Vite & Webpack", level: 85 },
-      { name: "Redux & Zustand", level: 80 },
-      { name: "React Query", level: 85 },
-      { name: "Framer Motion", level: 75 },
+      { name: "Trading Bot Development", level: 85 },
+      { name: "API Integration", level: 90 },
+      { name: "Payment Gateway", level: 80 },
+      { name: "Booking System", level: 85 },
     ],
   },
 ];

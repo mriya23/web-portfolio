@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 const heroImage = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop";
 
-const skills = ["React", "TypeScript", "Node.js", "Design", "UI/UX"];
+const skills = ["Flutter", "React", "Astro", "Node.js", "Python"];
 
 export function Hero() {
   const [displayText, setDisplayText] = useState("");
