@@ -157,23 +157,6 @@ export function Hero() {
             </div>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          className="flex justify-center mt-16 md:mt-24"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          <div
-            onClick={() => scrollToSection("#about")}
-            className="p-3 rounded-full border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 animate-bounce cursor-pointer"
-            data-testid="button-scroll-down"
-            aria-label="Scroll to about section"
-          >
-            <ChevronDown className="w-6 h-6 text-muted-foreground" />
-          </div>
-        </motion.div>
       </div>
     </section>
   );
