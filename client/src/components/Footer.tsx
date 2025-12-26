@@ -10,7 +10,6 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  { icon: Github, label: "GitHub", href: "https://github.com/mriya23" },
   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mochamad-rizqy-jayakarta/" },
   { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/mochrizqy.j" },
   { icon: Mail, label: "Email", href: "mailto:riskijayakarta2310@gmail.com" },

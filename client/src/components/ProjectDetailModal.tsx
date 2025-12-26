@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Github, Calendar, Code } from "lucide-react";
+import { X, ExternalLink, Github, Code } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface Project {
@@ -11,7 +12,6 @@ interface Project {
   icon: any;
   color: string;
   liveUrl: string;
-  githubUrl: string;
   featured: boolean;
 }
 
@@ -22,35 +22,51 @@ interface ProjectDetailModalProps {
 }
 
 export function ProjectDetailModal({ project, isOpen, onClose }: ProjectDetailModalProps) {
-  if (!project) return null;
+  useEffect(() => {
+    if (isOpen) {
+      // Get the scrollbar width to prevent layout shift
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+      document.documentElement.style.overflow = "";
+    }
 
-  const Icon = project.icon;
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  if (!project) return null;
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Modal Overlay & Container */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm bg-black/60 overflow-hidden"
             onClick={onClose}
-          />
-
-          {/* Modal */}
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+          >
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden pointer-events-auto"
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl pointer-events-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="bg-card border border-border/50 rounded-3xl shadow-2xl overflow-hidden">
+              <div className="bg-card border border-border/50 rounded-3xl overflow-hidden">
                 {/* Close Button */}
                 <button
                   onClick={onClose}
@@ -131,24 +147,12 @@ export function ProjectDetailModal({ project, isOpen, onClose }: ProjectDetailMo
                           <span>View Live Project</span>
                         </a>
                       )}
-                      {project.githubUrl !== "#" && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-secondary hover:bg-secondary/80 text-foreground font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 border border-border/50"
-                        >
-                          <Github className="w-5 h-5" />
-                          <span>View Source Code</span>
-                        </a>
-                      )}
                     </div>
-                    
                   </div>
                 </div>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </>
       )}
     </AnimatePresence>

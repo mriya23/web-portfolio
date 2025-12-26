@@ -14,7 +14,6 @@ const projects = [
     icon: Smartphone,
     color: "from-violet-500 to-purple-500",
     liveUrl: "#",
-    githubUrl: "https://github.com/mriya23/NICI-POS",
     featured: true,
   },
   {
@@ -26,7 +25,6 @@ const projects = [
     icon: Smartphone,
     color: "from-blue-500 to-cyan-500",
     liveUrl: "#",
-    githubUrl: "#",
     featured: true,
   },
   {
@@ -38,7 +36,6 @@ const projects = [
     icon: Globe,
     color: "from-purple-500 to-pink-500",
     liveUrl: "#",
-    githubUrl: "#",
     featured: false,
   },
   {
@@ -50,7 +47,6 @@ const projects = [
     icon: Globe,
     color: "from-green-500 to-emerald-500",
     liveUrl: "#",
-    githubUrl: "https://github.com/mriya23/tempeflow",
     featured: true,
   },
   {
@@ -62,7 +58,6 @@ const projects = [
     icon: Globe,
     color: "from-emerald-500 to-teal-500",
     liveUrl: "#",
-    githubUrl: "#",
     featured: false,
   },
   {
@@ -74,7 +69,6 @@ const projects = [
     icon: Globe,
     color: "from-orange-500 to-red-500",
     liveUrl: "#",
-    githubUrl: "#",
     featured: false,
   },
   {
@@ -86,7 +80,6 @@ const projects = [
     icon: Globe,
     color: "from-amber-500 to-yellow-500",
     liveUrl: "#",
-    githubUrl: "#",
     featured: false,
   },
   {
@@ -98,7 +91,6 @@ const projects = [
     icon: Cpu,
     color: "from-cyan-500 to-blue-500",
     liveUrl: "#",
-    githubUrl: "#",
     featured: false,
   },
 ];
