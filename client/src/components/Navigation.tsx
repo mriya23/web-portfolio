@@ -74,43 +74,43 @@ export function Navigation() {
             {/* Spacer - hidden on mobile */}
             <div className="hidden md:block w-8" />
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1 bg-secondary/30 backdrop-blur-sm rounded-xl p-1.5">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  data-testid={`link-${item.label.toLowerCase()}`}
-                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    activeSection === item.href.slice(1)
-                      ? "text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {activeSection === item.href.slice(1) && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute inset-0 bg-primary rounded-lg"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                  <span className="relative z-10">{item.label}</span>
-                </button>
-              ))}
-            </div>
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex items-center gap-1 bg-secondary/30 backdrop-blur-sm rounded-xl p-1.5">
+                {navItems.map((item) => (
+                  <span
+                    key={item.href}
+                    onClick={() => scrollToSection(item.href)}
+                    data-testid={`link-${item.label.toLowerCase()}`}
+                    className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-pointer ${
+                      activeSection === item.href.slice(1)
+                        ? "text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {activeSection === item.href.slice(1) && (
+                      <motion.div
+                        layoutId="activeNav"
+                        className="absolute inset-0 bg-primary rounded-lg"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </span>
+                ))}
+              </div>
 
             {/* Right Side */}
             <div className="flex items-center gap-2 sm:gap-3 ml-auto md:ml-0">
               <ThemeToggle />
               
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
-                data-testid="button-menu-toggle"
-              >
-                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
+                {/* Mobile Menu Button */}
+                <div
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="md:hidden p-2 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors cursor-pointer"
+                  data-testid="button-menu-toggle"
+                >
+                  {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                </div>
             </div>
           </div>
         </div>
@@ -140,24 +140,24 @@ export function Navigation() {
               transition={{ duration: 0.3, delay: 0.1 }}
               className="relative flex flex-col items-center justify-center h-full gap-2 p-6"
             >
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`w-full max-w-xs text-center text-lg font-heading font-medium py-3 px-6 rounded-xl transition-all duration-300 ${
-                    activeSection === item.href.slice(1)
-                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                      : "hover:bg-secondary/50 text-muted-foreground hover:text-foreground"
-                  }`}
-                  data-testid={`mobile-link-${item.label.toLowerCase()}`}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    onClick={() => scrollToSection(item.href)}
+                    className={`w-full max-w-xs text-center text-lg font-heading font-medium py-3 px-6 rounded-xl transition-all duration-300 cursor-pointer ${
+                      activeSection === item.href.slice(1)
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                        : "hover:bg-secondary/50 text-muted-foreground hover:text-foreground"
+                    }`}
+                    data-testid={`mobile-link-${item.label.toLowerCase()}`}
+                  >
+                    {item.label}
+                  </motion.div>
+                ))}
             </motion.div>
           </motion.div>
         )}

@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Heart, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, Instagram, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const quickLinks = [
@@ -31,68 +31,96 @@ export function Footer() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <footer className="border-t bg-muted/20">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-16">
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12 mb-8">
-          <div className="space-y-4">
-            <h3 className="font-heading font-bold text-xl">Portfolio</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Creative developer passionate about building beautiful and
-              functional web experiences. Let's create something amazing
-              together.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="font-heading font-semibold text-lg">Quick Links</h3>
-            <div className="flex flex-col gap-2">
-              {quickLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm text-left hover-elevate active-elevate-2 px-2 py-1 rounded-md w-fit"
-                  data-testid={`footer-link-${link.label.toLowerCase()}`}
-                >
-                  {link.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="font-heading font-semibold text-lg">Connect With Me</h3>
-            <div className="flex gap-2">
-              {socialLinks.map((social, index) => {
-                const Icon = social.icon;
-                return (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    size="icon"
-                    asChild
-                    className="hover-elevate"
-                    data-testid={`footer-social-${social.label.toLowerCase()}`}
-                  >
+    <footer className="relative border-t border-border/50 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+        {/* Main Footer Content */}
+        <div className="py-12 md:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+            {/* Brand & Description */}
+            <div className="md:col-span-5 space-y-4">
+              <div className="space-y-3">
+                <h3 className="font-heading font-bold text-2xl">
+                  Mochamad Rizqy Jayakarta
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-md">
+                  Full-stack developer specializing in building exceptional digital experiences. 
+                  Turning ideas into elegant, functional solutions.
+                </p>
+              </div>
+              
+              {/* Social Links */}
+              <div className="flex items-center gap-3 pt-2">
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
                     <a
+                      key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
+                      className="p-2.5 rounded-lg bg-secondary/50 hover:bg-primary hover:text-primary-foreground border border-border/50 hover:border-primary transition-all duration-200"
+                      data-testid={`footer-social-${social.label.toLowerCase()}`}
                     >
                       <Icon className="w-4 h-4" />
                     </a>
-                  </Button>
-                );
-              })}
+                  );
+                })}
+              </div>
+            </div>
+
+              {/* Navigation */}
+              <div className="md:col-span-3 space-y-4">
+                <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-foreground/80">
+                  Navigation
+                </h4>
+                <nav className="flex flex-col gap-3">
+                  {quickLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className="text-muted-foreground hover:text-foreground transition-colors text-sm text-left w-fit"
+                      data-testid={`footer-link-${link.label.toLowerCase()}`}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+
+            {/* Contact Info */}
+            <div className="md:col-span-4 space-y-4">
+              <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-foreground/80">
+                Get in Touch
+              </h4>
+              <div className="space-y-3 text-sm">
+                <p className="text-muted-foreground">
+                  riskijayakarta2310@gmail.com
+                </p>
+                <p className="text-muted-foreground">
+                  Purwokerto, Central Java, Indonesia
+                </p>
+                <p className="text-muted-foreground">
+                  Available for freelance opportunities
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+        {/* Bottom Bar */}
+        <div className="border-t border-border/50 py-6">
+          <div className="flex items-center justify-center">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Portfolio. All rights reserved.
+              © 2025 All rights reserved.
             </p>
           </div>
         </div>

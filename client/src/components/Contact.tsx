@@ -167,13 +167,10 @@ export function Contact() {
                 return (
                   <Card
                     key={index}
-                    className="p-4 hover-elevate transition-all duration-300"
+                    className="p-4"
                     data-testid={`card-contact-${index}`}
                   >
-                    <a
-                      href={info.href}
-                      className="flex items-center gap-4"
-                    >
+                    <div className="flex items-center gap-4">
                       <div className="p-3 rounded-lg bg-primary/10">
                         <Icon className="w-5 h-5 text-primary" />
                       </div>
@@ -183,7 +180,7 @@ export function Contact() {
                         </p>
                         <p className="font-medium">{info.value}</p>
                       </div>
-                    </a>
+                    </div>
                   </Card>
                 );
               })}

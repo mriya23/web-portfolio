@@ -78,18 +78,18 @@ export function Skills() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px]" />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <motion.div 
-          className="text-center mb-10 sm:mb-12 md:mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Expertise
-          </span>
-          <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+          {/* Header */}
+            <motion.div 
+              className="text-center mb-10 sm:mb-12 md:mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                Expertise
+              </span>
+              <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
             Skills & <span className="animated-gradient-text">Technologies</span>
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">

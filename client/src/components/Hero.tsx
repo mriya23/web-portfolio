@@ -108,32 +108,32 @@ export function Hero() {
             </div>
 
 
-            {/* CTA Buttons */}
-            <motion.div 
-              className="flex flex-wrap gap-4 pt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-            >
-              <button
-                onClick={() => scrollToSection("#projects")}
-                className="btn-modern group"
-                data-testid="button-view-projects"
+              {/* CTA Buttons */}
+              <motion.div 
+                className="flex flex-wrap gap-4 pt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
               >
-                <span className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
-                  View Projects
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </button>
-              <button
-                onClick={() => scrollToSection("#contact")}
-                className="px-6 py-3 rounded-xl font-medium border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
-                data-testid="button-get-in-touch"
-              >
-                Get in Touch
-              </button>
-            </motion.div>
+                <div
+                  onClick={() => scrollToSection("#projects")}
+                  className="btn-modern group cursor-pointer"
+                  data-testid="button-view-projects"
+                >
+                  <span className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4" />
+                    View Projects
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
+                <div
+                  onClick={() => scrollToSection("#contact")}
+                  className="px-6 py-3 rounded-xl font-medium border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 cursor-pointer"
+                  data-testid="button-get-in-touch"
+                >
+                  Get in Touch
+                </div>
+              </motion.div>
           </motion.div>
 
           {/* Hero Image */}
@@ -144,9 +144,6 @@ export function Hero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="relative">
-              {/* Glow Effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary/40 via-purple-500/40 to-pink-500/40 rounded-3xl blur-2xl opacity-50 animate-pulse" />
-              
               {/* Image Container */}
               <div className="relative rounded-3xl overflow-hidden border-2 border-white/10">
                 <img
@@ -155,8 +152,6 @@ export function Hero() {
                   className="w-full object-cover aspect-[3/4]"
                   data-testid="img-hero"
                 />
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               </div>
 
             </div>
@@ -170,14 +165,14 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
         >
-          <button
+          <div
             onClick={() => scrollToSection("#about")}
-            className="p-3 rounded-full border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 animate-bounce"
+            className="p-3 rounded-full border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 animate-bounce cursor-pointer"
             data-testid="button-scroll-down"
             aria-label="Scroll to about section"
           >
             <ChevronDown className="w-6 h-6 text-muted-foreground" />
-          </button>
+          </div>
         </motion.div>
       </div>
     </section>

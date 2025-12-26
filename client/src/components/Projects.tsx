@@ -138,17 +138,14 @@ export function Projects() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <motion.div 
-          className="text-center mb-10 sm:mb-12 md:mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Portfolio
-          </span>
-          <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+          <motion.div 
+            className="text-center mb-10 sm:mb-12 md:mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
             Featured <span className="animated-gradient-text">Projects</span>
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -156,33 +153,29 @@ export function Projects() {
           </p>
         </motion.div>
 
-        {/* Filter Tabs */}
-        <motion.div 
-          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {categories.map((category) => {
-            const Icon = category.icon;
-            return (
+          {/* Filter Tabs */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {categories.map((category) => (
               <button
                 key={category.name}
                 onClick={() => setActiveCategory(category.name)}
-                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-sm sm:text-base font-medium transition-all duration-300 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center ${
                   activeCategory === category.name
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                    : "bg-secondary/50 hover:bg-secondary text-foreground border border-border/50"
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                    : "bg-secondary/50 text-secondary-foreground hover:bg-secondary border border-border/50"
                 }`}
-                data-testid={`button-filter-${category.name.toLowerCase()}`}
               >
-                {Icon && <Icon className="w-4 h-4" />}
+                {category.icon && <category.icon className="w-4 h-4 mr-2" />}
                 {category.name}
               </button>
-            );
-          })}
-        </motion.div>
+            ))}
+          </motion.div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -202,31 +195,15 @@ export function Projects() {
                 onClick={() => handleProjectClick(project)}
               >
                 <div className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-border/50 cursor-pointer hover:border-primary/50 transition-all duration-300">
-                  {/* Image */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                      data-testid={`img-project-${index}`}
-                    />
-                    
-                    {/* Action Buttons */}
-                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                      <button
-                        className="p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
-                        data-testid={`button-project-live-${index}`}
-                      >
-                        <ExternalLink className="w-4 h-4 text-white" />
-                      </button>
-                      <button
-                        className="p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors"
-                        data-testid={`button-project-github-${index}`}
-                      >
-                        <Github className="w-4 h-4 text-white" />
-                      </button>
+                    {/* Image */}
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                        data-testid={`img-project-${index}`}
+                      />
                     </div>
-                  </div>
 
                   {/* Content */}
                   <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
