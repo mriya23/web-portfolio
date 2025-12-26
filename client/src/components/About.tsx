@@ -3,7 +3,7 @@ import { Code2, Users, Zap, Target, CheckCircle2 } from "lucide-react";
 
 const stats = [
   { value: "6+", label: "Projects Completed" },
-  { value: "2+", label: "Years Experience" },
+  { value: "3+", label: "Years Experience" },
   { value: "100%", label: "Client Satisfaction" },
 ];
 
@@ -43,9 +43,13 @@ const expertise = [
   "C++",
   "TypeScript",
   "JavaScript",
+  "PHP",
+  "Laravel",
   "Tailwind CSS",
   "PostgreSQL",
+  "MySQL",
   "Firebase",
+  "Supabase",
   "REST API",
   "Arduino",
   "IoT & MQTT",

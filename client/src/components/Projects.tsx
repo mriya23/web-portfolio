@@ -2,11 +2,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Smartphone, Globe, Palette, Cpu } from "lucide-react";
+import { ProjectDetailModal } from "./ProjectDetailModal";
 
 const projects = [
   {
     title: "NICI-POS",
-    description: "Aplikasi Point of Sale (Kasir) modern yang dirancang untuk bisnis retail, kafe, restoran, dan UMKM. Dilengkapi fitur transaksi cepat, dashboard analytics, multi-user, print struk Bluetooth, dan cloud sync dengan Supabase.",
+    description: "Modern Point of Sale (POS) application designed for retail businesses, cafes, restaurants, and SMEs. Features fast transactions, analytics dashboard, multi-user support, Bluetooth receipt printing, and cloud sync with Supabase.",
     image: "/images/nici_pos.png",
     tags: ["Flutter", "Dart", "Supabase", "SQLite"],
     category: "mobile",
@@ -18,8 +19,8 @@ const projects = [
   },
   {
     title: "Traveling Kuy",
-    description: "Aplikasi mobile destinasi wisata Banyumas dengan fitur pemesanan tiket online. Dilengkapi dengan informasi lengkap tempat wisata, harga tiket, dan sistem booking terintegrasi.",
-    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop",
+    description: "Mobile app for Banyumas tourist destinations with online ticket booking features. Complete with comprehensive tourist information, ticket pricing, and integrated booking system.",
+    image: "/images/traveling_kuy.png",
     tags: ["Flutter", "Dart", "REST API", "Firebase"],
     category: "mobile",
     icon: Smartphone,
@@ -30,8 +31,8 @@ const projects = [
   },
   {
     title: "Trading Bot Platform",
-    description: "Platform trading bot marketplace dengan fitur jual-beli bot trading otomatis. Dilengkapi dashboard analytics, backtesting, dan integrasi dengan berbagai exchange cryptocurrency.",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop",
+    description: "Trading bot marketplace platform with automated trading bot buying and selling features. Equipped with analytics dashboard, backtesting, and integration with various cryptocurrency exchanges.",
+    image: "/images/trading_bot.png",
     tags: ["React", "Node.js", "Python", "WebSocket"],
     category: "web",
     icon: Globe,
@@ -42,7 +43,7 @@ const projects = [
   },
   {
     title: "TempeFlow",
-    description: "Platform e-commerce modern untuk Tempe Jaya Mandiri. Memudahkan pelanggan memesan berbagai varian tempe secara online dengan pengalaman belanja yang seamless, dilengkapi payment gateway Midtrans.",
+    description: "Modern e-commerce platform for Tempe Jaya Mandiri. Enables customers to order various tempe variants online with a seamless shopping experience, integrated with Midtrans payment gateway.",
     image: "/images/tempe.png",
     tags: ["Laravel", "TailwindCSS", "MySQL", "Midtrans"],
     category: "web",
@@ -54,8 +55,8 @@ const projects = [
   },
   {
     title: "Indonesia Travel Website",
-    description: "Website traveling Indonesia dengan informasi destinasi wisata, paket tour, dan sistem reservasi. Menampilkan keindahan wisata nusantara dari Sabang sampai Merauke.",
-    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=600&fit=crop",
+    description: "Indonesian travel website with tourist destination information, tour packages, and reservation system. Showcasing the beauty of Indonesian tourism from Sabang to Merauke.",
+    image: "/images/indonesia_travel.png",
     tags: ["React", "Node.js", "PostgreSQL", "Tailwind"],
     category: "web",
     icon: Globe,
@@ -66,7 +67,7 @@ const projects = [
   },
   {
     title: "Moro Audio",
-    description: "Landing page profesional untuk usaha sewa tenda hajatan dan sound system. Menampilkan katalog produk, paket layanan, dan form pemesanan untuk berbagai acara.",
+    description: "Professional landing page for event tent and sound system rental business. Features product catalog, service packages, and booking form for various events.",
     image: "/images/moroaudio.png",
     tags: ["Astro", "Tailwind", "JavaScript"],
     category: "web",
@@ -78,7 +79,7 @@ const projects = [
   },
   {
     title: "Coffee Shop Landing Page",
-    description: "Landing page modern untuk coffee shop dengan desain elegan. Menampilkan menu, lokasi, dan ambiance kafe yang mengundang pengunjung untuk datang.",
+    description: "Modern landing page for coffee shop with elegant design. Showcasing menu, location, and cafe ambiance that invites visitors to come.",
     image: "/images/Kapur.png",
     tags: ["React", "Tailwind", "Framer Motion"],
     category: "web",
@@ -90,7 +91,7 @@ const projects = [
   },
   {
     title: "IoT Monitoring Susu Kambing",
-    description: "Sistem monitoring kelayakan air susu kambing berbasis IoT. Menggunakan sensor untuk mengukur kualitas susu secara real-time dengan dashboard monitoring dan notifikasi otomatis.",
+    description: "IoT-based goat milk quality monitoring system. Uses sensors to measure milk quality in real-time with monitoring dashboard and automatic notifications.",
     image: "/images/iot.png",
     tags: ["IoT", "Arduino", "Python", "MQTT"],
     category: "iot",
@@ -111,12 +112,23 @@ const categories = [
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredProjects = projects.filter((project) =>
     activeCategory === "All"
       ? true
       : project.category === activeCategory.toLowerCase()
   );
+
+  const handleProjectClick = (project: typeof projects[0]) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <section id="projects" className="py-16 sm:py-20 md:py-32 px-4 sm:px-6 md:px-12 relative overflow-hidden">
@@ -187,20 +199,18 @@ export function Projects() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 data-testid={`card-project-${index}`}
+                onClick={() => handleProjectClick(project)}
               >
-                <div className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-border/50">
+                <div className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-border/50 cursor-pointer hover:border-primary/50 transition-all duration-300">
                   {/* Image */}
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover"
                       data-testid={`img-project-${index}`}
                     />
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                     
-
                     {/* Action Buttons */}
                     <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                       <button
@@ -250,6 +260,13 @@ export function Projects() {
           })}
         </div>
       </div>
+
+      {/* Project Detail Modal */}
+      <ProjectDetailModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 }
