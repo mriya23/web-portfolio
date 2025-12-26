@@ -5,6 +5,18 @@ import { ExternalLink, Github, Smartphone, Globe, Palette, Cpu } from "lucide-re
 
 const projects = [
   {
+    title: "NICI-POS",
+    description: "Aplikasi Point of Sale (Kasir) modern yang dirancang untuk bisnis retail, kafe, restoran, dan UMKM. Dilengkapi fitur transaksi cepat, dashboard analytics, multi-user, print struk Bluetooth, dan cloud sync dengan Supabase.",
+    image: "/images/nici_pos.png",
+    tags: ["Flutter", "Dart", "Supabase", "SQLite"],
+    category: "mobile",
+    icon: Smartphone,
+    color: "from-violet-500 to-purple-500",
+    liveUrl: "#",
+    githubUrl: "https://github.com/mriya23/NICI-POS",
+    featured: true,
+  },
+  {
     title: "Traveling Kuy",
     description: "Aplikasi mobile destinasi wisata Banyumas dengan fitur pemesanan tiket online. Dilengkapi dengan informasi lengkap tempat wisata, harga tiket, dan sistem booking terintegrasi.",
     image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop",
@@ -26,6 +38,18 @@ const projects = [
     color: "from-purple-500 to-pink-500",
     liveUrl: "#",
     githubUrl: "#",
+    featured: false,
+  },
+  {
+    title: "TempeFlow",
+    description: "Platform e-commerce modern untuk Tempe Jaya Mandiri. Memudahkan pelanggan memesan berbagai varian tempe secara online dengan pengalaman belanja yang seamless, dilengkapi payment gateway Midtrans.",
+    image: "/images/tempe.png",
+    tags: ["Laravel", "TailwindCSS", "MySQL", "Midtrans"],
+    category: "web",
+    icon: Globe,
+    color: "from-green-500 to-emerald-500",
+    liveUrl: "#",
+    githubUrl: "https://github.com/mriya23/tempeflow",
     featured: true,
   },
   {
@@ -57,8 +81,8 @@ const projects = [
     description: "Landing page modern untuk coffee shop dengan desain elegan. Menampilkan menu, lokasi, dan ambiance kafe yang mengundang pengunjung untuk datang.",
     image: "/images/Kapur.png",
     tags: ["React", "Tailwind", "Framer Motion"],
-    category: "design",
-    icon: Palette,
+    category: "web",
+    icon: Globe,
     color: "from-amber-500 to-yellow-500",
     liveUrl: "#",
     githubUrl: "#",
@@ -83,7 +107,6 @@ const categories = [
   { name: "Web", icon: Globe },
   { name: "Mobile", icon: Smartphone },
   { name: "IoT", icon: Cpu },
-  { name: "Design", icon: Palette },
 ];
 
 export function Projects() {
